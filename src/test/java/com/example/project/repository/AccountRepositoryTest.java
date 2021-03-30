@@ -1,6 +1,7 @@
 package com.example.project.repository;
 
 import com.example.project.domain.Account;
+import com.example.project.domain.UserRole;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+import static com.example.project.domain.UserRole.USER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -29,7 +31,8 @@ public class AccountRepositoryTest {
         Account account = Account.builder()
                 .email("test@naver.com")
                 .password("test1234")
-                .userRole("ROLE_USER")
+                .name("ironman")
+                .userRole(USER)
                 .build();
         accountRepository.save(account);
         //when
@@ -45,7 +48,8 @@ public class AccountRepositoryTest {
         Account account = Account.builder()
                 .email("test@naver.com")
                 .password("test1234")
-                .userRole("ROLE_USER")
+                .name("ironman")
+                .userRole(USER)
                 .build();
         accountRepository.save(account);
         //when

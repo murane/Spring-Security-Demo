@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="ACCOUNT")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Account {
+public class Account extends BaseTime{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -23,13 +24,17 @@ public class Account {
     @Column(name = "ACCOUNT_PASSWORD",nullable = false)
     private String password;
 
-    @Column(name = "ACCOUNT_ROLE",nullable = false)
-    private String userRole;
+    @Column(name = "ACCOUNT_NAME",nullable = false)
+    private String name;
+
+    @Column(name = "ACCOUNT_ROLE")
+    private UserRole userRole;
 
     @Builder
-    public Account(String email, String password, String userRole){
+    public Account(String email, String password, String name, UserRole userRole){
         this.email=email;
         this.password=password;
+        this.name=name;
         this.userRole=userRole;
     }
 }
